@@ -103,14 +103,12 @@ EOF
 
 numbers = raw.lines.map(&:strip).collect { |line| line.each_char.collect { |c| c.to_i } }
 
-digits = Array.new(50, 0)
-cur_digit = 0
+digits = []
 carry = 0
 49.downto(0) do |i|
   digit_sum = numbers.reduce(carry) { |sum, num| sum + num[i] }
-  digits[cur_digit] += digit_sum % 10
+  digits << digit_sum % 10
   carry = (digit_sum / 10).floor
-  cur_digit += 1
 end
 
 digits << carry
